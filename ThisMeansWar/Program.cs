@@ -21,7 +21,15 @@ namespace ThisMeansWar
             {
                 var round = new BattleRound();
                 Console.WriteLine($"Battle Round {BattleRound.RoundNumber}:");
-                round.Execute(player, computerPlayer);
+                if (BattleRound.RoundNumber < 5000)
+                {
+                    round.Execute(player, computerPlayer);
+                }
+                else
+                {
+                    Console.WriteLine("Possible infinite game.");
+                }
+
             }
 
             var champion = (player.Hand.Count > 0) ? player.Name : computerPlayer.Name;
