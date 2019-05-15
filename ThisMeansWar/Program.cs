@@ -22,11 +22,18 @@ namespace ThisMeansWar
                 var round = new BattleRound();
                 Console.WriteLine($"Battle Round {BattleRound.RoundNumber}:");
                 round.Execute(player, computerPlayer);
-
             }
 
             var champion = (player.Hand.Count > 0) ? player.Name : computerPlayer.Name;
-            Console.WriteLine($"Congratulations, {champion}! You've won.");
+            if (champion == player.Name)
+            {
+                Console.WriteLine($"Congratulations, {champion}! You've won.");
+            }
+            else
+            {
+                Console.WriteLine($"Sorry {player.Name}, {computerPlayer.Name} got the best of you! Better luck next time.");
+            }
+
 
             Console.ReadLine();
         }

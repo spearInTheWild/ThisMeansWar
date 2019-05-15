@@ -11,10 +11,11 @@ namespace ThisMeansWar
         }
         public static int RoundNumber { get; set; }
 
-        private Player _winner;
-        private Player _loser;
         private Player _playerOne;
         private Player _playerTwo;
+        private Player _winner;
+        private Player _loser;
+
         private List<Card> _cardsPlayedInRound = new List<Card>();
 
         public void Execute(Player playerOne, Player playerTwo)
@@ -28,17 +29,29 @@ namespace ThisMeansWar
             if (currentPlayerOneCard.FaceValue == currentPlayerTwoCard.FaceValue)
             {
                 Console.WriteLine("--------This means war!--------");
-
-                //Logic if a player doesn't have 3 cards to play war. 
-
-
-                while (currentPlayerOneCard.FaceValue == currentPlayerTwoCard.FaceValue)
+                if (_playerOne.Hand.Count > 2 && _playerTwo.Hand.Count > 2)
                 {
-                    i += 2;
-                    currentPlayerOneCard = _playerOne.PlayCard(i);
-                    currentPlayerTwoCard = _playerTwo.PlayCard(i);
+                    while (currentPlayerOneCard.FaceValue == currentPlayerTwoCard.FaceValue)
+                    {
+                        i += 2;
+                        currentPlayerOneCard = _playerOne.PlayCard(i);
+                        currentPlayerTwoCard = _playerTwo.PlayCard(i);
+                    }
+                    SetWinnerAndLoser(currentPlayerOneCard, currentPlayerTwoCard);
                 }
-                SetWinnerAndLoser(currentPlayerOneCard, currentPlayerTwoCard);
+                else if (_playerOne.Hand.Count < 3)
+                {
+                    i = _playerOne.Hand.Count - 1;
+                    _winner = playerTwo;
+                    _loser = playerOne;
+
+                }
+                else if (_playerTwo.Hand.Count < 3)
+                {
+                    i = playerTwo.Hand.Count - 1;
+                    _winner = playerOne;
+                    _loser = playerTwo;
+                }
             }
             else
             {
