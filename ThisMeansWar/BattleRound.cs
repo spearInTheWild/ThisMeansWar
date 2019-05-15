@@ -26,6 +26,7 @@ namespace ThisMeansWar
             var currentPlayerOneCard = _playerOne.PlayCard(i);
             var currentPlayerTwoCard = _playerTwo.PlayCard(i);
 
+
             if (currentPlayerOneCard.FaceValue == currentPlayerTwoCard.FaceValue)
             {
                 Console.WriteLine("--------This means war!--------");
@@ -90,7 +91,7 @@ namespace ThisMeansWar
 
         private void DeclareRoundWinner()
         {
-            Console.WriteLine($"{_winner.Name} Wins this round");
+            Console.WriteLine($"{_winner.Name} Wins this round.");
         }
 
         private void PrintCardCount(Player player1, Player player2)
